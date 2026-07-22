@@ -24,6 +24,7 @@
         <object name="resource.admin2"/>
         <object name="resource.webadmin"/>
         <object name="resource.acpanel"/>
+        <object name="user.fF"/>
     </group>
     <group name="Console">
         <acl name="Moderator"/>
