@@ -1,0 +1,15 @@
+<meta>
+	<info name="" author="Mr.BeMo" type="script" version="0.9.0" description=""/>
+	
+	<script src="chaticon.lua" type="client"/>
+        <file src='img/1.png' />
+        <file src='img/2.png' />
+        <file src='img/3.png' />
+        <file src='img/4.png' />
+        <file src='img/5.png' />
+        <file src='img/off.png' />
+        <file src='img/on.png' />
+
+
+        <file src="chaticon.fx"/>
+</meta>
