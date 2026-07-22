@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "MTA Wiki MCP": {
+        "url": "https://mcp.multitheftauto.com/wiki",
+        "type": "http",
+        "enabled": true
+    }
+  }
+}
