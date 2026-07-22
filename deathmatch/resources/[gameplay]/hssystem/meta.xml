@@ -1,0 +1,20 @@
+<meta>
+    <info author="WASSIm." name="High Save System" version="1.3.0" type="script" description="This resource for save players data" />
+    <min_mta_version server="1.3.5"></min_mta_version>
+    
+    <script src="server.lua" type="server" />
+
+    <settings>
+        <setting name="*position" friendlyname="Position" accept="false,string" value="false" examples="1524, 126, 10" desc="Disable or Set First Player Position Default You Want Started on it" group="Player Save" /> 
+	    <setting name="*rotation" friendlyname="Rotation" accept="false,number" value="false" examples="180" desc="Disable or Set First Player Rotation Default You Want Started on it" group="Player Save" /> 
+		<setting name="*interior" friendlyname="Interior" accept="false,number" value="false" examples="1" desc="Disable or Set First Player Interior Default You Want Started on it" group="Player Save" /> 
+		<setting name="*dimension" friendlyname="Dimension" accept="false,number" value="false" examples="5" desc="Disable or Set First Player Dimension Default You Want Started on it" group="Player Save" /> 
+		<setting name="*team" friendlyname="Team" accept="false,string" value="false" examples="Guests" desc="Disable or Set First Player Team Default You Want Started on it" group="Player Save" /> 
+		<setting name="*skin" friendlyname="Skin" accept="false,number" value="false" examples="287" desc="Disable or Set First Player Skin Default You Want Started on it" group="Player Save" /> 
+		<setting name="*data" friendlyname="Data" accept="false,string" value="false" examples="job, kills, score" desc="Disable or Set Player Element Data's You Want Save Them" group="Player Save" />
+		
+		<setting name="*loadOnStartResource" friendlyname="Load Data's On Resource Started" accept="false,true" value="false" examples="true" desc="Enable or Disable Load Data's on Resource Started" group="Other" /> 
+		<setting name="*saveCommand" friendlyname="Save Command" accept="true,false" value="true" examples="true" desc="Enable or Disable Save Command" group="Other"  /> 
+		<setting name="*saveTime" friendlyname="Save Time" accept="false,number" value="900000" examples="300000" desc="Enable or Set Save Time" group="Other"  /> 
+    </settings>
+</meta>
