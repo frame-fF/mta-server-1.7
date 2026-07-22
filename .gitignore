@@ -1,0 +1,6 @@
+databases/
+backups/
+logs/
+resource-cache/
+internal.db
+registry.db
