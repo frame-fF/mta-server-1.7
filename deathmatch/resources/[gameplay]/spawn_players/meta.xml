@@ -1,5 +1,5 @@
 <meta>
-	<info author="Kiro" description="Player spawn system" version="1.0" type="script"/>
+	<info author="fF" description="Player spawn system" version="1.0" type="script"/>
 	
 	<script src="spawn_players_config.lua" type="server"/>
 	<script src="spawn_players.lua" type="server"/>

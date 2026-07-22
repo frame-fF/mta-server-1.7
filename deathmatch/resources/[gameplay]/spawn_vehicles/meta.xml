@@ -1,5 +1,5 @@
 <meta>
-	<info author="Kiro" description="Vehicle spawn system for initial vehicle placement" version="1.0" type="script"/>
+	<info author="fF" description="Vehicle spawn system for initial vehicle placement" version="1.0" type="script"/>
 	
 	<script src="spawn_vehicle_config.lua" type="server"/>
 	<script src="spawn_vehicle.lua" type="server"/>

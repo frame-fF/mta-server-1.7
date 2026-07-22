@@ -1,0 +1,115 @@
+<meta>
+    <info name="skins" author="fF" description="Skins" version="1.0" type="script"/>
+
+    <script src="client.lua" type="client" />
+
+    <file src="items/backpack_patrol.dff" cache="false" />
+    <file src="items/backpack_patrol.txd" cache="false" />
+    <file src="items/backpack_british.dff" cache="false" />
+    <file src="items/backpack_british.txd" cache="false" />
+
+    <file src="skins/male01.dff" cache="false" />
+    <file src="skins/male01.txd" cache="false" />
+    <file src="skins/ofost.dff" cache="false" />
+    <file src="skins/ofost.txd" cache="false" />
+    <file src="skins/hmori.dff" cache="false" />
+    <file src="skins/hmori.txd" cache="false" />
+    <file src="skins/zero.dff" cache="false" />
+    <file src="skins/zero.txd" cache="false" />
+    <file src="skins/vwmotr1.dff" cache="false" />
+    <file src="skins/vwmotr1.txd" cache="false" />
+    
+    <file src="clothes/boxingcap.txd" cache="false" />
+    <file src="clothes/boxingcap.dff" cache="false" />
+    <file src="clothes/hockey.txd" cache="false" />
+    <file src="clothes/hockeymask.dff" cache="false" />
+
+    <file src="weapons/desert_eagle.dff" cache="false" />
+    <file src="weapons/desert_eagle.txd" cache="false" />
+    <file src="weapons/ak47.dff" cache="false" />
+    <file src="weapons/ak47.txd" cache="false" />
+    <file src="weapons/m4.dff" cache="false" />
+    <file src="weapons/m4.txd" cache="false" />
+    <file src="weapons/rifle.dff" cache="false" />
+    <file src="weapons/rifle.txd" cache="false" />
+    <file src="weapons/sniper.dff" cache="false" />
+    <file src="weapons/sniper.txd" cache="false" />
+    <file src="weapons/shotgun.dff" cache="false" />
+    <file src="weapons/shotgun.txd" cache="false" />
+    <file src="weapons/gun_para.dff" cache="false" />
+    <file src="weapons/gun_para.txd" cache="false" />
+
+    <file src="vehicles/buffalo.dff" cache="false" />
+    <file src="vehicles/buffalo.txd" cache="false" />
+    <file src="vehicles/alpha.dff" cache="false" />
+    <file src="vehicles/alpha.txd" cache="false" />
+    <file src="vehicles/alpha_2.dff" cache="false" />
+    <file src="vehicles/alpha_2.txd" cache="false" />
+    <file src="vehicles/alpha_3.dff" cache="false" />
+    <file src="vehicles/alpha_3.txd" cache="false" />
+    <file src="vehicles/bullet.dff" cache="false" />
+    <file src="vehicles/bullet.txd" cache="false" />
+    <file src="vehicles/bullet_2.dff" cache="false" />
+    <file src="vehicles/bullet_2.txd" cache="false" />
+    <file src="vehicles/merit.dff" cache="false" />
+    <file src="vehicles/merit.txd" cache="false" />
+    <file src="vehicles/jester.dff" cache="false" />
+    <file src="vehicles/jester.txd" cache="false" />
+    <file src="vehicles/jester_2.dff" cache="false" />
+    <file src="vehicles/jester_2.txd" cache="false" />
+    <file src="vehicles/zr-350.dff" cache="false" />
+    <file src="vehicles/zr-350.txd" cache="false" />
+    <file src="vehicles/euros.dff" cache="false" />
+    <file src="vehicles/euros.txd" cache="false" />
+    <file src="vehicles/infernus.dff" cache="false" />
+    <file src="vehicles/infernus.txd" cache="false" />
+    <file src="vehicles/infernus_2.dff" cache="false" />
+    <file src="vehicles/infernus_2.txd" cache="false" />
+    <file src="vehicles/turismo.dff" cache="false" />
+    <file src="vehicles/turismo.txd" cache="false" />
+    <file src="vehicles/willard.dff" cache="false" />
+    <file src="vehicles/willard.txd" cache="false" />
+    <file src="vehicles/stallion.dff" cache="false" />
+    <file src="vehicles/stallion.txd" cache="false" />
+    <file src="vehicles/stallion_2.dff" cache="false" />
+    <file src="vehicles/stallion_2.txd" cache="false" />
+    <file src="vehicles/bravura.dff" cache="false" />
+    <file src="vehicles/bravura.txd" cache="false" />
+    <file src="vehicles/flash.dff" cache="false" />
+    <file src="vehicles/flash.txd" cache="false" />
+    <file src="vehicles/fcr-900.dff" cache="false" />
+    <file src="vehicles/fcr-900.txd" cache="false" />
+    <file src="vehicles/tahoma.dff" cache="false" />
+    <file src="vehicles/tahoma.txd" cache="false" />
+    <file src="vehicles/cheetah.dff" cache="false" />
+    <file src="vehicles/cheetah.txd" cache="false" />
+    <file src="vehicles/hotring_racer_3.dff" cache="false" />
+    <file src="vehicles/hotring_racer_3.txd" cache="false" />
+    <file src="vehicles/taxi.dff" cache="false" />
+    <file src="vehicles/taxi.txd" cache="false" />
+    <file src="vehicles/emperor.dff" cache="false" />
+    <file src="vehicles/emperor.txd" cache="false" />
+    <file src="vehicles/bobcat.dff" cache="false" />
+    <file src="vehicles/bobcat.txd" cache="false" />
+    <file src="vehicles/police_ls.dff" cache="false" />
+    <file src="vehicles/police_ls.txd" cache="false" />
+    <file src="vehicles/admiral.dff" cache="false" />
+    <file src="vehicles/admiral.txd" cache="false" />
+    <file src="vehicles/elegy.dff" cache="false" />
+    <file src="vehicles/elegy.txd" cache="false" />
+    <file src="vehicles/super_gt.dff" cache="false" />
+    <file src="vehicles/super_gt.txd" cache="false" />
+    <file src="vehicles/sultan.dff" cache="false" />
+    <file src="vehicles/sultan.txd" cache="false" />
+    <file src="vehicles/premier.dff" cache="false" />
+    <file src="vehicles/premier.txd" cache="false" />
+    <file src="vehicles/primo.dff" cache="false" />
+    <file src="vehicles/primo.txd" cache="false" />
+    <file src="vehicles/sentinel.dff" cache="false" />
+    <file src="vehicles/sentinel.txd" cache="false" />
+    <file src="vehicles/solair.dff" cache="false" />
+    <file src="vehicles/solair.txd" cache="false" />
+    <file src="vehicles/freeway.dff" cache="false" />
+    <file src="vehicles/freeway.txd" cache="false" />
+    
+</meta>
