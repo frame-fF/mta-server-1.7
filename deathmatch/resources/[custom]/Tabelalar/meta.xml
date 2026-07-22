@@ -1,0 +1,34 @@
+<meta>
+<script src="client.lua" type="client"/>
+<file src="Limit60.txd" type="client"/>
+<file src="Limit60.dff" type="client"/>
+<file src="Limit60.col" type="client"/>
+
+<file src="Pov.txd" type="client"/>
+<file src="Pov.dff" type="client"/>
+<file src="Pov.col" type="client"/>
+
+<file src="ZapPov.txd" type="client"/>
+<file src="ZapPov.dff" type="client"/>
+<file src="ZapPov.col" type="client"/>
+
+<file src="Stop.txd" type="client"/>
+<file src="Stop.dff" type="client"/>
+<file src="Stop.col" type="client"/>
+
+<file src="Warning.txd" type="client"/>
+<file src="Warning.dff" type="client"/>
+<file src="Warning.col" type="client"/>
+
+<file src="Phone.txd" type="client"/>
+<file src="Phone.dff" type="client"/>
+<file src="Phone.col" type="client"/>
+
+<file src="NotEnter.txd" type="client"/>
+<file src="NotEnter.dff" type="client"/>
+<file src="NotEnter.col" type="client"/>
+
+<map src="Znaki-po-vsemy.map" dimension="0"></map>
+    <script src="mapEditorScriptingExtension_s.lua" type="server"></script>
+    <script src="mapEditorScriptingExtension_c.lua" type="client" validate="false"></script>
+</meta>

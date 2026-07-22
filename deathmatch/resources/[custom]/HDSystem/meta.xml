@@ -1,0 +1,10 @@
+<meta>
+	<min_mta_version client="1.3.0-9.04482"/>
+	
+	<script src="client.lua" type="client" cache="false"/>
+	
+	<file src="mta-helper.fx" />
+	<file src="shader_frent.ttfc" />
+	<file src="remap.png" />
+	<file src="env_1.dat" />
+</meta>

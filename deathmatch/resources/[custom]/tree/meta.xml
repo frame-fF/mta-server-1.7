@@ -1,0 +1,22 @@
+<meta>
+<info author="MTA Resource Massive Replacement" description="www.mta-resource.ru" version="1.3" type="script" />
+<script src="client.lua" type="client" cache="false"/>
+<file src="gta_tree_boak.txd" type="client" cache="false"/>
+<file src="veg_tree3.dff" type="client" cache="false"/>
+
+<file src="sm_veg_tree7vbig.dff" type="client"/>
+<file src="sm_vegvbbigbrn.dff" type="client"/>
+<file src="sm_bushvbig.dff" type="client"/>
+
+<file src="gta_proc_bush.txd" type="client"/>
+<file src="new_bushtest.dff" type="client"/>
+<file src="01.col" type="client"/>
+
+<file src="sm_veg_tree6.dff" type="client"/>
+<file src="39.txd" type="client"/>
+<file src="39.dff" type="client"/>
+<file src="39.col" type="client"/>
+<file src="15.txd" type="client"/>
+<file src="15.dff" type="client"/>
+<file src="15.col" type="client"/>
+</meta>

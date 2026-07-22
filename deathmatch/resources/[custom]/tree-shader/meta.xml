@@ -1,0 +1,6 @@
+<meta>
+	<info author="Mr.Anderson" description="3Dshadow" type="script" version="1.0" />
+	<script src="client.lua" type="client" cache="false" />
+	<file src="palm.png" />
+	<file src="derevo.png" />
+</meta>
