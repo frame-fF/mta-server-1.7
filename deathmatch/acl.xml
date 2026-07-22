@@ -55,6 +55,10 @@
         <acl name="autoACL_mapmanager"/>
         <object name="resource.mapmanager"/>
     </group>
+    <group name="autoGroup_acpanel">
+        <acl name="autoACL_acpanel"/>
+        <object name="resource.acpanel"/>
+    </group>
     <acl name="Default">
         <right name="general.ModifyOtherObjects" access="false"/>
         <right name="general.http" access="false"/>
@@ -901,5 +905,10 @@
         <right name="function.restartResource" access="false" who="" pending="true" date=""/>
         <right name="function.stopResource" access="false" who="" pending="true" date=""/>
         <right name="function.refreshResources" access="false" who="" pending="true" date=""/>
+    </acl>
+    <acl name="autoACL_acpanel">
+        <right name="function.setServerConfigSetting" access="false" who="" pending="true" date=""/>
+        <right name="function.kickPlayer" access="false" who="" pending="true" date=""/>
+        <right name="function.fetchRemote" access="false" who="" pending="true" date=""/>
     </acl>
 </acl>
