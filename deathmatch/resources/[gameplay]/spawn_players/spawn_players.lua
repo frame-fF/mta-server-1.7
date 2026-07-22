@@ -39,6 +39,9 @@ end
 
 -- Resource start handler
 local function onResourceStartSpawnPlayers()
+	-- Seed the random generator so skin/spawn selection differs between resource/server restarts
+	math.randomseed(getRealTime().timestamp)
+
 	-- Add event handlers
 	addEventHandler("onPlayerJoin", root, onPlayerJoin)
 	addEventHandler("onPlayerWasted", root, onPlayerWasted)
