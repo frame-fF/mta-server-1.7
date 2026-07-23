@@ -50,40 +50,9 @@ function ()
             `clothes` JSON DEFAULT NULL,
             `stats` JSON DEFAULT NULL,
             `wantedlevel` INT DEFAULT 0,
-            `hunger` INT DEFAULT 100,
-            `thirst` INT DEFAULT 100,
-            `stamina` INT DEFAULT 100,
             PRIMARY KEY (`player_id`),
             CONSTRAINT `fk_player_data_player` FOREIGN KEY (`player_id`) REFERENCES `player_accounts` (`id`) ON DELETE CASCADE
         )
-    ]])
-
-    -- อัพเกรดตารางเดิม (ถ้ามีอยู่แล้วก่อนเพิ่มคอลัมน์เหล่านี้) ให้มีคอลัมน์ hunger/thirst/stamina
-    ensureColumn("player_data", "hunger", "INT DEFAULT 100")
-    ensureColumn("player_data", "thirst", "INT DEFAULT 100")
-    ensureColumn("player_data", "stamina", "INT DEFAULT 100")
-
-    -- ซ่อมแถวเก่าที่มีค่า JSON ผิดรูปแบบ (เช่น เคยถูกสร้างจากโค้ดรุ่นก่อนที่ครอบ array ซ้ำสองชั้น
-    -- หรือมีค่าที่ไม่ใช่ JSON เลย) ให้กลับมาเป็นค่า default ที่ใช้ได้ปกติ
-    exports.connection:databaseQuery([[
-        UPDATE `player_data` SET `position` = '[-1969.4, 137.85, 27.69]'
-        WHERE `position` IS NULL OR NOT JSON_VALID(`position`) OR JSON_TYPE(`position`) != 'ARRAY'
-    ]])
-    exports.connection:databaseQuery([[
-        UPDATE `player_data` SET `weapons_in_hand` = '[]'
-        WHERE `weapons_in_hand` IS NOT NULL AND NOT JSON_VALID(`weapons_in_hand`)
-    ]])
-    exports.connection:databaseQuery([[
-        UPDATE `player_data` SET `weapons` = '[]'
-        WHERE `weapons` IS NOT NULL AND NOT JSON_VALID(`weapons`)
-    ]])
-    exports.connection:databaseQuery([[
-        UPDATE `player_data` SET `ammo` = '[]'
-        WHERE `ammo` IS NOT NULL AND NOT JSON_VALID(`ammo`)
-    ]])
-    exports.connection:databaseQuery([[
-        UPDATE `player_data` SET `clothes` = '[]'
-        WHERE `clothes` IS NOT NULL AND NOT JSON_VALID(`clothes`)
     ]])
 
     -- ลบ trigger เดิมก่อน (ถ้ามี) เพื่อรองรับการ restart resource โดยไม่ error
@@ -92,17 +61,16 @@ function ()
     ]])
 
     -- เมื่อมีการเพิ่ม player_accounts ใหม่ ให้สร้างแถว player_data คู่กันอัตโนมัติ (พร้อมค่า default ตามที่กำหนด)
-    exports.connection:databaseQuery([=[
+        exports.connection:databaseQuery([=[
         CREATE TRIGGER `trg_player_accounts_after_insert`
         AFTER INSERT ON `player_accounts`
         FOR EACH ROW
         INSERT INTO `player_data` (
             `player_id`, `position`, `rotation`, `skin`, `interior`, `dimension`, `team`,
-            `health`, `money`, `weapons_in_hand`, `weapons`, `ammo`, `armor`, `clothes`, `stats`, `wantedlevel`,
-            `hunger`, `thirst`, `stamina`
+            `health`, `money`, `weapons_in_hand`, `weapons`, `ammo`, `armor`, `clothes`, `stats`, `wantedlevel`
         ) VALUES (
             NEW.id,
-            '[-1969.4, 137.85, 27.69]',
+            '[[-1969.4, 137.85, 27.69]]',
             0,
             0,
             0,
@@ -110,16 +78,13 @@ function ()
             '0',
             100,
             0,
-            '[]',
-            '[]',
-            '[]',
+            '[[]]',
+            '[[]]',
+            '[[]]',
             100.00,
-            '[["hoodyAblack", "hoodyA", 0], ["player_face", "head", 1], ["chongergrey", "chonger", 2], ["sneakerbincblk", "sneaker", 3], ["hockey", "hockeymask", 16]]',
-            '[]',
-            0,
-            100,
-            100,
-            100
+            '[[["hoodyAblack", "hoodyA", 0], ["player_face", "head", 1], ["chongergrey", "chonger", 2], ["sneakerbincblk", "sneaker", 3], ["hockey", "hockeymask", 16]]]',
+            '[[]]',
+            0
         )
     ]=])
 
