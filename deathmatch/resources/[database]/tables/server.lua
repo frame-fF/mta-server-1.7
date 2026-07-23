@@ -21,7 +21,8 @@ function ()
     -- สร้างตาราง player_data ถ้ายังไม่มี
     exports.connection:databaseQuery([[
         CREATE TABLE IF NOT EXISTS `player_data` (
-            `player_id` INT UNSIGNED NOT NULL,
+            `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+            `player_account_id` INT UNSIGNED NOT NULL,
             `position` JSON DEFAULT NULL,
             `rotation` FLOAT DEFAULT 0,
             `skin` INT DEFAULT 0,
@@ -38,8 +39,8 @@ function ()
             `stats` JSON DEFAULT NULL,
             `wantedlevel` INT DEFAULT 0,
             `fighting_style` INT DEFAULT 4,
-            PRIMARY KEY (`player_id`),
-            CONSTRAINT `fk_player_data_player` FOREIGN KEY (`player_id`) REFERENCES `player_accounts` (`id`) ON DELETE CASCADE
+            PRIMARY KEY (`player_account_id`),
+            CONSTRAINT `fk_player_data_player` FOREIGN KEY (`player_account_id`) REFERENCES `player_accounts` (`id`) ON DELETE CASCADE
         )
     ]])
 
@@ -54,7 +55,7 @@ function ()
         AFTER INSERT ON `player_accounts`
         FOR EACH ROW
         INSERT INTO `player_data` (
-            `player_id`, `position`, `rotation`, `skin`, `interior`, `dimension`, `team`,
+            `player_account_id`, `position`, `rotation`, `skin`, `interior`, `dimension`, `team`,
             `health`, `money`, `weapons_in_hand`, `weapons`, `ammo`, `armor`, `clothes`, `stats`, `wantedlevel`,
             `fighting_style`
         ) VALUES (
