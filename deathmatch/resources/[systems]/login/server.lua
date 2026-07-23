@@ -29,35 +29,35 @@ local function loadPlayerData(player, playerId)
     local team = playerData.team and playerData.team ~= "0" and getTeamFromName(playerData.team) or nil
 
     spawnPlayer(
-        player,
-        x, y, z,
-        playerData.rotation,
-        playerData.skin,
-        playerData.interior,
-        playerData.dimension,
-        team
+        player, -- player
+        x, y, z, -- x y z
+        playerData.rotation, -- rotation
+        playerData.skin, -- skin
+        playerData.interior, -- interior
+        playerData.dimension, -- dimension
+        team -- team
     )
 
-    -- Give weapons in hand
+    -- 1. Give weapons in hand
     local weaponsInHand = fromJSON(playerData.weapons_in_hand) or {}
     takeAllWeapons(player)
     for weapon, ammo in pairs(weaponsInHand) do
         giveWeapon(player, tonumber(weapon), ammo, true)
     end
 
-    -- Health / Armor / Money / Wanted level
+    -- 2. Health / Armor / Money / Wanted level
     setElementHealth(player, playerData.health)
     setPedArmor(player, playerData.armor)
     setPlayerMoney(player, playerData.money)
     setPlayerWantedLevel(player, playerData.wantedlevel)
 
-    -- Clothes
+    -- 3. Clothes
     local clothes = fromJSON(playerData.clothes) or {}
     for _, cloth in ipairs(clothes) do
         addPedClothes(player, cloth[1], cloth[2], cloth[3])
     end
 
-    -- Stats
+    -- 4. Stats
     local stats = fromJSON(playerData.stats)
     if type(stats) == "table" then
         for stat, value in pairs(stats) do
@@ -65,7 +65,7 @@ local function loadPlayerData(player, playerId)
         end
     end
 
-    -- Fighting style
+    -- 5. Fighting style
     if playerData.fighting_style then
         setPedFightingStyle(player, tonumber(playerData.fighting_style) or 4)
     end
