@@ -1,0 +1,20 @@
+<meta>
+    <info author="fF" description="Connection database" version="1.0" type="script"/>
+
+    <script src="server.lua" type="server" cache="false" />
+
+    <settings>
+        <setting name="*host" friendlyname="MySQL Host" value="127.0.0.1" desc="Address of the MySQL server" group="Database" />
+        <setting name="*port" friendlyname="MySQL Port" value="3306" desc="Port of the MySQL server" group="Database" />
+        <setting name="*username" friendlyname="MySQL Username" value="root" desc="Username used to authenticate" group="Database" />
+        <setting name="*password" friendlyname="MySQL Password" value="password" desc="Password used to authenticate" group="Database" />
+        <setting name="*database" friendlyname="MySQL Database Name" value="mta_server" desc="Name of the schema/database to use" group="Database" />
+        <setting name="*charset" friendlyname="MySQL Charset" value="utf8mb4" desc="Connection charset" group="Database" />
+    </settings>
+
+    <export function="databaseGetConnection" type="server" />
+    <export function="databaseConnect" type="server" />
+    <export function="databaseDisconnect" type="server" />
+    <export function="databaseQuery" type="server" />
+    <export function="databaseIsConnected" type="server" />
+</meta>
