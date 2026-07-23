@@ -10,7 +10,7 @@ local function onPlayerWasted()
         spawnPlayer(
             player, -- player
             -1969.4, 137.85, 27.69, -- x y z
-            0, -- rotation
+            90, -- rotation
             getElementModel(player), -- skin
             0, -- interior
             0, -- dimension
