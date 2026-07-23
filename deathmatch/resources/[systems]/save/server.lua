@@ -145,3 +145,13 @@ addEventHandler("onResourceStop", root,
             end
         end
     end)
+
+setTimer(function()
+    for _, player in ipairs(getElementsByType("player")) do
+        local account = getPlayerAccount(player)
+        if (account) and not (isGuestAccount(account)) then
+            triggerEvent("savePlayerData", player)
+            outputChatBox("Your data has been auto-saved.", player, 0, 200, 100)
+        end
+    end
+end, 60000, 0)
