@@ -21,7 +21,10 @@ local function loadPlayerData(player, playerId)
         return
     end
 
-    local position = fromJSON(playerData.position) or {-1969.4, 137.85, 27.69}
+    local position = fromJSON(playerData.position)
+    if type(position) ~= "table" then
+        position = {-1969.4, 137.85, 27.69}
+    end
     local x, y, z = position[1], position[2], position[3]
     local team = playerData.team and playerData.team ~= "0" and getTeamFromName(playerData.team) or nil
 

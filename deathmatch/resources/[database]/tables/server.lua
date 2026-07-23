@@ -2,19 +2,6 @@
 ---                                          FUNCTIONS                                           ---
 ----------------------------------------------------------------------------------------------------
 
--- Adds a column to a table only if it doesn't already exist, so existing installs can be
--- upgraded in place without erroring on resource restart.
-local function ensureColumn(tableName, columnName, definition)
-    local rows = exports.connection:databaseQuery(
-        "SELECT COUNT(*) AS cnt FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA` = DATABASE() AND `TABLE_NAME` = ? AND `COLUMN_NAME` = ?",
-        tableName, columnName
-    )
-
-    if rows and rows[1] and tonumber(rows[1].cnt) == 0 then
-        exports.connection:databaseQuery(("ALTER TABLE `%s` ADD COLUMN `%s` %s"):format(tableName, columnName, definition))
-    end
-end
-
 addEventHandler("onResourceStart", resourceRoot,
 function ()
     -- สร้างตาราง player_accounts ถ้ายังไม่มี
