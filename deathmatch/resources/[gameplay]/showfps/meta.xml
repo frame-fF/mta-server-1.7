@@ -1,4 +1,0 @@
-<meta>
-    <info name="showfps" version="1.0" description="" type="script"/>
-    <script src="client.lua" type="client"/>
-</meta>
