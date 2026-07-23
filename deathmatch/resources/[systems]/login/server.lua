@@ -65,6 +65,11 @@ local function loadPlayerData(player, playerId)
         end
     end
 
+    -- Fighting style
+    if playerData.fighting_style then
+        setPedFightingStyle(player, tonumber(playerData.fighting_style) or 4)
+    end
+
     -- Element data (used by other gameplay resources)
     setElementData(player, "weapons", fromJSON(playerData.weapons))
     setElementData(player, "ammo", fromJSON(playerData.ammo))

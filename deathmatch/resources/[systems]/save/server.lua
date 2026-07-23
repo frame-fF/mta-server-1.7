@@ -22,7 +22,8 @@ local function save(player, playerId, data)
             `clothes` = ?,
             `weapons` = ?,
             `ammo` = ?,
-            `stats` = ?
+            `stats` = ?,
+            `fighting_style` = ?
         WHERE `player_id` = ?
     ]],
         data.position,
@@ -40,6 +41,7 @@ local function save(player, playerId, data)
         data.weapons,
         data.ammo,
         data.stats,
+        data.fighting_style,
         playerId
     )
 end
@@ -107,7 +109,8 @@ local function savePlayerData()
                 end
             end
             return toJSON(t)
-        end)()
+        end)(),
+        fighting_style = getPedFightingStyle(player)
     }
     save(player, playerId, data)
 end
