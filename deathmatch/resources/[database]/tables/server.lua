@@ -63,6 +63,29 @@ function ()
     ensureColumn("player_data", "thirst", "INT DEFAULT 100")
     ensureColumn("player_data", "stamina", "INT DEFAULT 100")
 
+    -- ซ่อมแถวเก่าที่มีค่า JSON ผิดรูปแบบ (เช่น เคยถูกสร้างจากโค้ดรุ่นก่อนที่ครอบ array ซ้ำสองชั้น
+    -- หรือมีค่าที่ไม่ใช่ JSON เลย) ให้กลับมาเป็นค่า default ที่ใช้ได้ปกติ
+    exports.connection:databaseQuery([[
+        UPDATE `player_data` SET `position` = '[-1969.4, 137.85, 27.69]'
+        WHERE `position` IS NULL OR NOT JSON_VALID(`position`) OR JSON_TYPE(`position`) != 'ARRAY'
+    ]])
+    exports.connection:databaseQuery([[
+        UPDATE `player_data` SET `weapons_in_hand` = '[]'
+        WHERE `weapons_in_hand` IS NOT NULL AND NOT JSON_VALID(`weapons_in_hand`)
+    ]])
+    exports.connection:databaseQuery([[
+        UPDATE `player_data` SET `weapons` = '[]'
+        WHERE `weapons` IS NOT NULL AND NOT JSON_VALID(`weapons`)
+    ]])
+    exports.connection:databaseQuery([[
+        UPDATE `player_data` SET `ammo` = '[]'
+        WHERE `ammo` IS NOT NULL AND NOT JSON_VALID(`ammo`)
+    ]])
+    exports.connection:databaseQuery([[
+        UPDATE `player_data` SET `clothes` = '[]'
+        WHERE `clothes` IS NOT NULL AND NOT JSON_VALID(`clothes`)
+    ]])
+
     -- ลบ trigger เดิมก่อน (ถ้ามี) เพื่อรองรับการ restart resource โดยไม่ error
     exports.connection:databaseQuery([[
         DROP TRIGGER IF EXISTS `trg_player_accounts_after_insert`
