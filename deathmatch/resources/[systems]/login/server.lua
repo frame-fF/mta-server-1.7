@@ -10,7 +10,7 @@
 
 local function loadPlayerData(player, playerId)
     local rows = exports.connection:databaseQuery(
-        "SELECT * FROM `player_data` WHERE `player_id` = ?", playerId
+        "SELECT * FROM `player_data` WHERE `player_account_id` = ?", playerId
     )
     local playerData = rows and rows[1]
 

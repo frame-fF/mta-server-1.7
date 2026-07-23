@@ -39,7 +39,8 @@ function ()
             `stats` JSON DEFAULT NULL,
             `wantedlevel` INT DEFAULT 0,
             `fighting_style` INT DEFAULT 4,
-            PRIMARY KEY (`player_account_id`),
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `player_account_id_unique` (`player_account_id`),
             CONSTRAINT `fk_player_data_player` FOREIGN KEY (`player_account_id`) REFERENCES `player_accounts` (`id`) ON DELETE CASCADE
         )
     ]])

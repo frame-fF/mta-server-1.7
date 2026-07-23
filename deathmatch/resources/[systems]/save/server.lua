@@ -24,7 +24,7 @@ local function save(player, playerId, data)
             `ammo` = ?,
             `stats` = ?,
             `fighting_style` = ?
-        WHERE `player_id` = ?
+        WHERE `player_account_id` = ?
     ]],
         data.position,
         data.rotation,
