@@ -1,5 +1,6 @@
 addEventHandler("onResourceStart", resourceRoot,
 function ()
+    -- สร้างตาราง player_accounts ถ้ายังไม่มี
     exports.connection:databaseQuery([[
         CREATE TABLE IF NOT EXISTS `player_accounts` (
             `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -12,17 +13,32 @@ function ()
             UNIQUE KEY `account_unique` (`account`)
         )
     ]])
-
+    
+    -- สร้างตาราง player_data ถ้ายังไม่มี
     exports.connection:databaseQuery([[
         CREATE TABLE IF NOT EXISTS `player_data` (
-            `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
             `account_id` INT UNSIGNED NOT NULL,
-            `key` VARCHAR(64) NOT NULL,
-            `value` LONGTEXT DEFAULT NULL,
-            `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`),
-            UNIQUE KEY `account_key_unique` (`account_id`, `key`),
+            `level` INT DEFAULT 1,
+            `exp` INT DEFAULT 0,
+            `kills` INT DEFAULT 0,
+            `deaths` INT DEFAULT 0,
+            `playtime` INT DEFAULT 0,
+            PRIMARY KEY (`account_id`),
             CONSTRAINT `fk_player_data_account` FOREIGN KEY (`account_id`) REFERENCES `player_accounts` (`id`) ON DELETE CASCADE
         )
     ]])
+
+    -- ลบ trigger เดิมก่อน (ถ้ามี) เพื่อรองรับการ restart resource โดยไม่ error
+    exports.connection:databaseQuery([[
+        DROP TRIGGER IF EXISTS `trg_player_accounts_after_insert`
+    ]])
+
+    -- เมื่อมีการเพิ่ม player_accounts ใหม่ ให้สร้างแถว player_data คู่กันอัตโนมัติ
+    exports.connection:databaseQuery([[
+        CREATE TRIGGER `trg_player_accounts_after_insert`
+        AFTER INSERT ON `player_accounts`
+        FOR EACH ROW
+        INSERT INTO `player_data` (`account_id`) VALUES (NEW.id)
+    ]])
+
 end)
