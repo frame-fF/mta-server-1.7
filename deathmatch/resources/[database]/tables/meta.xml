@@ -1,0 +1,8 @@
+<meta>
+    <info author="fF" description="Table Databases" version="1.0" type="script"/>
+
+    <script src="server.lua" type="server" cache="false" />
+
+    <include resource="connection" />
+
+</meta>
