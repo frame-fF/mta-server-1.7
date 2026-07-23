@@ -1,0 +1,7 @@
+<meta>
+    <info name="register" version="1.0" description="" type="script"/>
+    <min_mta_version server="1.6" />
+    <script src="client.lua" type="client"/>
+    <script src="server.lua" type="server"/>
+    <file src="background.jpg" />
+</meta>
