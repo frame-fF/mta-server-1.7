@@ -1,0 +1,8 @@
+<meta>
+    <info name="wasted" version="1.0" description="" type="script"/>
+    <script src="server.lua" type="server"/>
+
+    <settings>
+		<setting name="*take_player_money_value" value="[1000]" />
+	</settings>
+</meta>
