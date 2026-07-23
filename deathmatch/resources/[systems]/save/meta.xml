@@ -2,5 +2,6 @@
     <info name="save" version="1.0" description="" type="script"/>
     <min_mta_version server="1.6" />
     <script src="server.lua" type="server"/>
-    <!-- <export function="save" type="server"/> -->
+
+    <include resource="connection" />
 </meta>

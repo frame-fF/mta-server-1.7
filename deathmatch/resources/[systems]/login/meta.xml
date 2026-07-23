@@ -4,4 +4,6 @@
     <script src="client.lua" type="client"/>
     <script src="server.lua" type="server"/>
     <file src="background.jpg" />
+
+    <include resource="connection" />
 </meta>

@@ -1,3 +1,20 @@
+----------------------------------------------------------------------------------------------------
+---                                          FUNCTIONS                                           ---
+----------------------------------------------------------------------------------------------------
+
+-- Adds a column to a table only if it doesn't already exist, so existing installs can be
+-- upgraded in place without erroring on resource restart.
+local function ensureColumn(tableName, columnName, definition)
+    local rows = exports.connection:databaseQuery(
+        "SELECT COUNT(*) AS cnt FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA` = DATABASE() AND `TABLE_NAME` = ? AND `COLUMN_NAME` = ?",
+        tableName, columnName
+    )
+
+    if rows and rows[1] and tonumber(rows[1].cnt) == 0 then
+        exports.connection:databaseQuery(("ALTER TABLE `%s` ADD COLUMN `%s` %s"):format(tableName, columnName, definition))
+    end
+end
+
 addEventHandler("onResourceStart", resourceRoot,
 function ()
     -- สร้างตาราง player_accounts ถ้ายังไม่มี
@@ -33,10 +50,18 @@ function ()
             `clothes` JSON DEFAULT NULL,
             `stats` JSON DEFAULT NULL,
             `wantedlevel` INT DEFAULT 0,
+            `hunger` INT DEFAULT 100,
+            `thirst` INT DEFAULT 100,
+            `stamina` INT DEFAULT 100,
             PRIMARY KEY (`player_id`),
             CONSTRAINT `fk_player_data_player` FOREIGN KEY (`player_id`) REFERENCES `player_accounts` (`id`) ON DELETE CASCADE
         )
     ]])
+
+    -- อัพเกรดตารางเดิม (ถ้ามีอยู่แล้วก่อนเพิ่มคอลัมน์เหล่านี้) ให้มีคอลัมน์ hunger/thirst/stamina
+    ensureColumn("player_data", "hunger", "INT DEFAULT 100")
+    ensureColumn("player_data", "thirst", "INT DEFAULT 100")
+    ensureColumn("player_data", "stamina", "INT DEFAULT 100")
 
     -- ลบ trigger เดิมก่อน (ถ้ามี) เพื่อรองรับการ restart resource โดยไม่ error
     exports.connection:databaseQuery([[
@@ -50,10 +75,11 @@ function ()
         FOR EACH ROW
         INSERT INTO `player_data` (
             `player_id`, `position`, `rotation`, `skin`, `interior`, `dimension`, `team`,
-            `health`, `money`, `weapons_in_hand`, `weapons`, `ammo`, `armor`, `clothes`, `stats`, `wantedlevel`
+            `health`, `money`, `weapons_in_hand`, `weapons`, `ammo`, `armor`, `clothes`, `stats`, `wantedlevel`,
+            `hunger`, `thirst`, `stamina`
         ) VALUES (
             NEW.id,
-            '[[-1969.4, 137.85, 27.69]]',
+            '[-1969.4, 137.85, 27.69]',
             0,
             0,
             0,
@@ -61,13 +87,16 @@ function ()
             '0',
             100,
             0,
-            '[[]]',
-            '[[]]',
-            '[[]]',
+            '[]',
+            '[]',
+            '[]',
             100.00,
-            '[[["hoodyAblack", "hoodyA", 0], ["player_face", "head", 1], ["chongergrey", "chonger", 2], ["sneakerbincblk", "sneaker", 3], ["hockey", "hockeymask", 16]]]',
-            '[[]]',
-            0
+            '[["hoodyAblack", "hoodyA", 0], ["player_face", "head", 1], ["chongergrey", "chonger", 2], ["sneakerbincblk", "sneaker", 3], ["hockey", "hockeymask", 16]]',
+            '[]',
+            0,
+            100,
+            100,
+            100
         )
     ]=])
 

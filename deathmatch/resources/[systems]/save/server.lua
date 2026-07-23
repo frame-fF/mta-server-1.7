@@ -1,22 +1,51 @@
-local function save(source, data)
-    local url = exports.settings:baseUrl() .. '/api/player/me/data/update/'
-    local key = getElementData(source, "results").key
-    local sendOptions = {
-        connectionAttempts = 3,
-        connectTimeout = 5000,
-        method = "PATCH",
-        formFields = data,
-        headers = {
-            ["Authorization"] = "Token " .. key
-        }
-    }
-    fetchRemote(url, sendOptions, function(data, info)
-        if info.statusCode == 200 then
-            iprint("Save data success")
-        else
-            outputChatBox('Error: ' .. data, source)
-        end
-    end)
+----------------------------------------------------------------------------------------------------
+---                                            NOTES                                              ---
+----------------------------------------------------------------------------------------------------
+-- Persists player gameplay data directly into the MySQL `player_data` table instead of PATCHing
+-- a remote HTTP API.
+----------------------------------------------------------------------------------------------------
+
+local function save(player, playerId, data)
+    exports.connection:databaseQuery([[
+        UPDATE `player_data` SET
+            `position` = ?,
+            `rotation` = ?,
+            `skin` = ?,
+            `interior` = ?,
+            `dimension` = ?,
+            `team` = ?,
+            `weapons_in_hand` = ?,
+            `health` = ?,
+            `armor` = ?,
+            `money` = ?,
+            `wantedlevel` = ?,
+            `clothes` = ?,
+            `hunger` = ?,
+            `thirst` = ?,
+            `stamina` = ?,
+            `weapons` = ?,
+            `ammo` = ?
+        WHERE `player_id` = ?
+    ]],
+        data.position,
+        data.rotation,
+        data.skin,
+        data.interior,
+        data.dimension,
+        data.team,
+        data.weapons_in_hand,
+        data.health,
+        data.armor,
+        data.money,
+        data.wantedlevel,
+        data.clothes,
+        data.hunger,
+        data.thirst,
+        data.stamina,
+        data.weapons,
+        data.ammo,
+        playerId
+    )
 end
 
 
@@ -27,23 +56,25 @@ local function savePlayerData()
     if not account or isGuestAccount(account) then
         return
     end
-    -- get username
-    local username = getAccountName(account)
+
+    local playerId = getElementData(player, "playerId")
+    if not playerId then
+        return
+    end
+
     -- get team name
     local team = getPlayerTeam(player)
-    local team = team and getTeamName(team)
+    team = team and getTeamName(team) or "0"
     -- get position
     local x, y, z = getElementPosition(player)
     local position = toJSON({ x, y, z })
-    -- get weapons
-    local weapon = getPedWeapon(player)
-    local ammo = getPedTotalAmmo(player)
-    local weapons_in_hand = {}
+    -- get weapons in hand
+    local weaponsInHand = {}
     for slot = 0, 12 do
         local weapon = getPedWeapon(player, slot)
         local ammo = getPedTotalAmmo(player, slot)
         if (weapon > 0) and (ammo > 0) then
-            weapons_in_hand[weapon] = ammo
+            weaponsInHand[weapon] = ammo
         end
     end
     -- get clothes
@@ -62,7 +93,7 @@ local function savePlayerData()
         interior = getElementInterior(player),
         dimension = getElementDimension(player),
         team = team,
-        weapons_in_hand = toJSON(weapons_in_hand),
+        weapons_in_hand = toJSON(weaponsInHand),
         health = getElementHealth(player),
         armor = getPedArmor(player),
         money = getPlayerMoney(player),
@@ -75,7 +106,7 @@ local function savePlayerData()
         weapons = toJSON(getElementData(player, "weapons")),
         ammo = toJSON(getElementData(player, "ammo"))
     }
-    save(player, data)
+    save(player, playerId, data)
 end
 
 
