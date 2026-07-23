@@ -21,7 +21,8 @@ local function save(player, playerId, data)
             `wantedlevel` = ?,
             `clothes` = ?,
             `weapons` = ?,
-            `ammo` = ?
+            `ammo` = ?,
+            `stats` = ?
         WHERE `player_id` = ?
     ]],
         data.position,
@@ -38,6 +39,7 @@ local function save(player, playerId, data)
         data.clothes,
         data.weapons,
         data.ammo,
+        data.stats,
         playerId
     )
 end
@@ -95,7 +97,17 @@ local function savePlayerData()
         clothes = toJSON(clothes),
         -- Additional Status
         weapons = toJSON(getElementData(player, "weapons")),
-        ammo = toJSON(getElementData(player, "ammo"))
+        ammo = toJSON(getElementData(player, "ammo")),
+        stats = (function()
+            local t = {}
+            for stat = 0, 230 do
+                local v = getPedStat(player, stat)
+                if v and v > 0 then
+                    t[stat] = v
+                end
+            end
+            return toJSON(t)
+        end)()
     }
     save(player, playerId, data)
 end

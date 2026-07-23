@@ -57,6 +57,14 @@ local function loadPlayerData(player, playerId)
         addPedClothes(player, cloth[1], cloth[2], cloth[3])
     end
 
+    -- Stats
+    local stats = fromJSON(playerData.stats)
+    if type(stats) == "table" then
+        for stat, value in pairs(stats) do
+            setPedStat(player, tonumber(stat), value)
+        end
+    end
+
     -- Element data (used by other gameplay resources)
     setElementData(player, "weapons", fromJSON(playerData.weapons))
     setElementData(player, "ammo", fromJSON(playerData.ammo))
