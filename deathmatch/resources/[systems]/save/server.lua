@@ -20,9 +20,6 @@ local function save(player, playerId, data)
             `money` = ?,
             `wantedlevel` = ?,
             `clothes` = ?,
-            `hunger` = ?,
-            `thirst` = ?,
-            `stamina` = ?,
             `weapons` = ?,
             `ammo` = ?
         WHERE `player_id` = ?
@@ -39,9 +36,6 @@ local function save(player, playerId, data)
         data.money,
         data.wantedlevel,
         data.clothes,
-        data.hunger,
-        data.thirst,
-        data.stamina,
         data.weapons,
         data.ammo,
         playerId
@@ -100,9 +94,6 @@ local function savePlayerData()
         wantedlevel = getPlayerWantedLevel(player),
         clothes = toJSON(clothes),
         -- Additional Status
-        hunger = getElementData(player, "hunger") or 100,
-        thirst = getElementData(player, "thirst") or 100,
-        stamina = getElementData(player, "stamina") or 100,
         weapons = toJSON(getElementData(player, "weapons")),
         ammo = toJSON(getElementData(player, "ammo"))
     }
