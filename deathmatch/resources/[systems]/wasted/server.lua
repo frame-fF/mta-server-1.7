@@ -5,6 +5,9 @@ local function onPlayerWasted()
     local team = getPlayerTeam(player)
     local team = team and getTeamName(team)
 
+    -- Element data
+    setElementData(player, "zombie_kills", getElementData(player, "zombie_kills"))
+
     -- รอ 3 วินาที แล้วสปอนผู้เล่นที่ San Fierro
     setTimer(function()
         spawnPlayer(
@@ -47,9 +50,6 @@ local function onPlayerWasted()
 
         -- 5. Set Fighting style
         setPedFightingStyle(player, getPedFightingStyle(player))
-
-        -- 6. Element data
-        setElementData(player, "zombie_kills", getElementData(player, "zombie_kills"))
 
         fadeCamera(player, true)
         setCameraTarget(player, player)

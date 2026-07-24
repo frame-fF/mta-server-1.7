@@ -28,6 +28,9 @@ local function loadPlayerData(player, playerId)
     local x, y, z = position[1], position[2], position[3]
     local team = playerData.team and playerData.team ~= "0" and getTeamFromName(playerData.team) or nil
 
+    -- Element data (used by other gameplay resources)
+    setElementData(player, "zombie_kills", playerData.zombie_kills)
+
     spawnPlayer(
         player, -- player
         x, y, z, -- x y z
@@ -69,9 +72,6 @@ local function loadPlayerData(player, playerId)
     if playerData.fighting_style then
         setPedFightingStyle(player, tonumber(playerData.fighting_style) or 4)
     end
-
-    -- 6. Element data (used by other gameplay resources)
-    setElementData(player, "zombie_kills", playerData.zombie_kills)
 
     fadeCamera(player, true)
     setCameraTarget(player, player)
