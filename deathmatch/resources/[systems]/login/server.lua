@@ -39,9 +39,9 @@ local function loadPlayerData(player, playerId)
     )
 
     -- 1. Give weapons in hand
-    local weaponsInHand = fromJSON(playerData.weapons_in_hand) or {}
+    local weapons = fromJSON(playerData.weapons) or {}
     takeAllWeapons(player)
-    for weapon, ammo in pairs(weaponsInHand) do
+    for weapon, ammo in pairs(weapons) do
         giveWeapon(player, tonumber(weapon), ammo, true)
     end
 
@@ -71,8 +71,7 @@ local function loadPlayerData(player, playerId)
     end
 
     -- Element data (used by other gameplay resources)
-    setElementData(player, "weapons", fromJSON(playerData.weapons))
-    setElementData(player, "ammo", fromJSON(playerData.ammo))
+    setElementData(player, "zombie_kills", playerData.zombie_kills)
 
     fadeCamera(player, true)
     setCameraTarget(player, player)

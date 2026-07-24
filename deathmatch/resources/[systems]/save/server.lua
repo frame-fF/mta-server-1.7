@@ -14,16 +14,15 @@ local function save(player, playerId, data)
             `interior` = ?,
             `dimension` = ?,
             `team` = ?,
-            `weapons_in_hand` = ?,
+            `weapons` = ?,
             `health` = ?,
             `armor` = ?,
             `money` = ?,
             `wantedlevel` = ?,
             `clothes` = ?,
-            `weapons` = ?,
-            `ammo` = ?,
             `stats` = ?,
-            `fighting_style` = ?
+            `fighting_style` = ?,
+            `zombie_kills` = ?
         WHERE `player_account_id` = ?
     ]],
         data.position,
@@ -32,16 +31,15 @@ local function save(player, playerId, data)
         data.interior,
         data.dimension,
         data.team,
-        data.weapons_in_hand,
+        data.weapons,
         data.health,
         data.armor,
         data.money,
         data.wantedlevel,
         data.clothes,
-        data.weapons,
-        data.ammo,
         data.stats,
         data.fighting_style,
+        data.zombie_kills,
         playerId
     )
 end
@@ -67,12 +65,12 @@ local function savePlayerData()
     local x, y, z = getElementPosition(player)
     local position = toJSON({ x, y, z })
     -- get weapons in hand
-    local weaponsInHand = {}
+    local weapons = {}
     for slot = 0, 12 do
         local weapon = getPedWeapon(player, slot)
         local ammo = getPedTotalAmmo(player, slot)
         if (weapon > 0) and (ammo > 0) then
-            weaponsInHand[weapon] = ammo
+            weapons[weapon] = ammo
         end
     end
     -- get clothes
@@ -91,15 +89,14 @@ local function savePlayerData()
         interior = getElementInterior(player),
         dimension = getElementDimension(player),
         team = team,
-        weapons_in_hand = toJSON(weaponsInHand),
+        weapons = toJSON(weapons),
         health = getElementHealth(player),
         armor = getPedArmor(player),
         money = getPlayerMoney(player),
         wantedlevel = getPlayerWantedLevel(player),
         clothes = toJSON(clothes),
-        -- Additional Status
-        weapons = toJSON(getElementData(player, "weapons")),
-        ammo = toJSON(getElementData(player, "ammo")),
+        zombie_kills = getElementData(player, "zombie_kills"),
+
         stats = (function()
             local t = {}
             for stat = 0, 230 do

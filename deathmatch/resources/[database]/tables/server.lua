@@ -31,14 +31,13 @@ function ()
             `team` VARCHAR(50) DEFAULT '0',
             `health` INT DEFAULT 100,
             `money` INT DEFAULT 0,
-            `weapons_in_hand` JSON DEFAULT NULL,
             `weapons` JSON DEFAULT NULL,
-            `ammo` JSON DEFAULT NULL,
             `armor` FLOAT DEFAULT 100.00,
             `clothes` JSON DEFAULT NULL,
             `stats` JSON DEFAULT NULL,
             `wantedlevel` INT DEFAULT 0,
             `fighting_style` INT DEFAULT 4,
+            `zombie_kills` INT DEFAULT 0,
             PRIMARY KEY (`id`),
             UNIQUE KEY `player_account_id_unique` (`player_account_id`),
             CONSTRAINT `fk_player_data_player` FOREIGN KEY (`player_account_id`) REFERENCES `player_accounts` (`id`) ON DELETE CASCADE
@@ -57,8 +56,8 @@ function ()
         FOR EACH ROW
         INSERT INTO `player_data` (
             `player_account_id`, `position`, `rotation`, `skin`, `interior`, `dimension`, `team`,
-            `health`, `money`, `weapons_in_hand`, `weapons`, `ammo`, `armor`, `clothes`, `stats`, `wantedlevel`,
-            `fighting_style`
+            `health`, `money`, `weapons`, `armor`, `clothes`, `stats`, `wantedlevel`, `fighting_style`,
+            `zombie_kills`
         ) VALUES (
             NEW.id,
             '[[-1969.4, 137.85, 27.69]]',
@@ -70,13 +69,12 @@ function ()
             100,
             0,
             '[[]]',
-            '[[]]',
-            '[[]]',
             100.00,
             '[[["hoodyAblack", "hoodyA", 0], ["player_face", "head", 1], ["chongergrey", "chonger", 2], ["sneakerbincblk", "sneaker", 3], ["hockey", "hockeymask", 16]]]',
             '[[]]',
             0,
-            4
+            4,
+            0
         )
     ]=])
 
