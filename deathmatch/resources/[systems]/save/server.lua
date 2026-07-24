@@ -61,9 +61,11 @@ local function savePlayerData()
     -- get team name
     local team = getPlayerTeam(player)
     team = team and getTeamName(team) or "0"
+
     -- get position
     local x, y, z = getElementPosition(player)
     local position = toJSON({ x, y, z })
+
     -- get weapons in hand
     local weapons = {}
     for slot = 0, 12 do
@@ -73,6 +75,7 @@ local function savePlayerData()
             weapons[weapon] = ammo
         end
     end
+
     -- get clothes
     local clothes = {}
     for type = 0, 17 do
@@ -95,8 +98,6 @@ local function savePlayerData()
         money = getPlayerMoney(player),
         wantedlevel = getPlayerWantedLevel(player),
         clothes = toJSON(clothes),
-        zombie_kills = getElementData(player, "zombie_kills"),
-
         stats = (function()
             local t = {}
             for stat = 0, 230 do
@@ -107,7 +108,8 @@ local function savePlayerData()
             end
             return toJSON(t)
         end)(),
-        fighting_style = getPedFightingStyle(player)
+        fighting_style = getPedFightingStyle(player),
+        zombie_kills = getElementData(player, "zombie_kills"),
     }
     save(player, playerId, data)
 end

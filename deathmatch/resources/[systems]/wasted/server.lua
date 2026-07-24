@@ -48,7 +48,7 @@ local function onPlayerWasted()
         -- 5. Set Fighting style
         setPedFightingStyle(player, getPedFightingStyle(player))
 
-        -- Element data
+        -- 6. Element data
         setElementData(player, "zombie_kills", getElementData(player, "zombie_kills"))
 
         fadeCamera(player, true)

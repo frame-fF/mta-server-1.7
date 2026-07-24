@@ -70,7 +70,7 @@ local function loadPlayerData(player, playerId)
         setPedFightingStyle(player, tonumber(playerData.fighting_style) or 4)
     end
 
-    -- Element data (used by other gameplay resources)
+    -- 6. Element data (used by other gameplay resources)
     setElementData(player, "zombie_kills", playerData.zombie_kills)
 
     fadeCamera(player, true)
